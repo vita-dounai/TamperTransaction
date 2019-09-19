@@ -61,6 +61,10 @@ async function test() {
     } else {
         console.log(chalk.red("[ERROR] Sending failed"));
     }
+
+    balance = await web3jService.call(contractAddress, getBalanceSig, []);
+    balance = utils.decodeMethod(getBalanceAbi, balance.result.output)[0].toString();
+    console.log(`[INFO] The balance of ${user} is ${balance}`);
 }
 
 console.log("[INFO] Test start");
